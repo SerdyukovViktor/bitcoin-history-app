@@ -1,0 +1,19 @@
+{
+  "name": "bitcoin-history-app",
+  "version": "1.0.0",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently \"npm run start:service\" \"npm run start:back\" \"npm run start:front\"",
+    "start:service": "cd service && node service.js",
+    "start:back": "cd back && node server.js",
+    "start:front": "cd front && npm run build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  }
+}

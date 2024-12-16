@@ -1,0 +1,41 @@
+version: "3.9"
+services:
+  frontend:
+    build: ./Front
+    ports:
+      - "80:80"
+    volumes:
+      - ./Front:/app
+    depends_on:
+      - backend
+    restart: always
+
+  backend:
+    build: ./Back
+    ports:
+      - "3002:3001"
+    volumes:
+      - ./Back:/app
+    depends_on:
+      - service
+      - db
+    restart: always
+
+  service:
+    build: ./Service
+    volumes:
+      - ./Service:/app
+    depends_on:
+      - db
+    restart: always
+
+  db:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - db_data:/data/db
+    restart: always
+
+volumes:
+  db_data: {}
